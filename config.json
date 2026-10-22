@@ -1,0 +1,36 @@
+{
+  "mode": "url",
+  "url": "https://id-preview--0a508a54-ba71-49a6-ba9d-d58d3a383adf.lovable.app",
+  "repo": "",
+  "ref": "",
+  "subdir": "",
+  "appName": "GitHub to Build",
+  "appId": "com.filetobuild.app",
+  "versionName": "1.0.0",
+  "versionCode": 1,
+  "minSdk": 22,
+  "orientation": "unspecified",
+  "statusBarColor": "#16181c",
+  "fullscreen": false,
+  "hideStatusBar": false,
+  "hideNavBar": false,
+  "keepScreenOn": false,
+  "secure": false,
+  "cleartext": true,
+  "webDebug": true,
+  "allowBackup": true,
+  "plugins": [
+    "app",
+    "device",
+    "status-bar",
+    "filesystem",
+    "share",
+    "browser"
+  ],
+  "permissions": [
+    "android.permission.INTERNET",
+    "android.permission.READ_EXTERNAL_STORAGE",
+    "android.permission.REQUEST_INSTALL_PACKAGES"
+  ],
+  "buildId": "self-mvjkbpa8-yn1tz"
+}
