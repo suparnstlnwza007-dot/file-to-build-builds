@@ -1,0 +1,31 @@
+{
+  "mode": "auto",
+  "url": "",
+  "repo": "",
+  "ref": "",
+  "subdir": "",
+  "appName": "Raphael v14",
+  "appId": "com.example.myapp",
+  "versionName": "1.14.1",
+  "versionCode": 1,
+  "minSdk": 22,
+  "orientation": "unspecified",
+  "statusBarColor": "#000000",
+  "fullscreen": false,
+  "hideStatusBar": false,
+  "hideNavBar": false,
+  "keepScreenOn": false,
+  "secure": false,
+  "cleartext": true,
+  "webDebug": true,
+  "allowBackup": true,
+  "plugins": [
+    "app",
+    "device",
+    "status-bar"
+  ],
+  "permissions": [
+    "android.permission.INTERNET"
+  ],
+  "buildId": "mvk0ts5w-o46ij"
+}
