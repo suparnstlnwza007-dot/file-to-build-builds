@@ -1,0 +1,55 @@
+name: build-apk
+on:
+  push:
+    branches: ['build-*']
+permissions:
+  contents: write
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Detect project type
+        id: d
+        run: python3 ci/build.py --detect
+      - name: Setup Java 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Setup Node 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.7'
+      - name: Setup Flutter
+        if: steps.d.outputs.mode == 'flutter'
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+      - name: Setup Python (Kivy)
+        if: steps.d.outputs.mode == 'kivy'
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install Buildozer (Kivy)
+        if: steps.d.outputs.mode == 'kivy'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y git zip unzip autoconf libtool pkg-config zlib1g-dev libncurses5-dev libtinfo6 cmake libffi-dev libssl-dev
+          pip install --upgrade buildozer cython==0.29.36 setuptools
+      - name: Build APK
+        id: b
+        run: python3 ci/build.py
+      - name: Publish APK
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.b.outputs.tag }}
+          name: ${{ steps.b.outputs.title }}
+          body_path: out/release.md
+          files: out/*.apk
